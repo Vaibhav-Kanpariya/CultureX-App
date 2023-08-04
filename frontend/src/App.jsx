@@ -9,6 +9,7 @@ function App() {
   const [user, setUser] = useState(null);
   const getUser = async () => {
     try {
+      // const url = "http://localhost:8000/auth/login/success";
       const url = "https://my-snap.onrender.com/auth/login/success";
       axios
         .get(url, { withCredentials: true })

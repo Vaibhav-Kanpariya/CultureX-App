@@ -12,6 +12,7 @@ const VideoPlayer = ({ videoName }) => {
   return (
     <video ref={videoRef} width={320} height={240} controls autoPlay>
       <source
+        // src={`http://localhost:8000/media/video/${videoName}`}
         src={`https://my-snap.onrender.com/media/video/${videoName}`}
       ></source>
       Your browser doesn't support video tag

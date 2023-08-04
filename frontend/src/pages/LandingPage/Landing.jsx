@@ -2,6 +2,7 @@ import React from "react";
 import "../../styles/Landing.css";
 const Landing = () => {
   const handleAuth = () => {
+    // window.open("http://localhost:8000/auth/google/callback", "_self");
     window.open("https://my-snap.onrender.com/auth/google/callback", "_self");
   };
   return (

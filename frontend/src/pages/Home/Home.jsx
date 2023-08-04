@@ -7,12 +7,14 @@ import VideoPlayer from "./components/VideoPlayer";
 const Home = (props) => {
   const [data, setData] = useState([]);
   const LogOut = () => {
+    // window.open("http://localhost:8000/auth/logout", "_self");
     window.open("https://my-snap.onrender.com/auth/logout", "_self");
   };
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
+        // `http://localhost:8000/media/files/${props.user.email}`
         `https://my-snap.onrender.com/media/files/${props.user.email}`
       );
       setData(response.data);
@@ -27,6 +29,7 @@ const Home = (props) => {
           <div key={item._id}>
             <div>
               <img
+                // src={`http://localhost:8000/media/${item.fileName}`}
                 src={`https://my-snap.onrender.com/media/${item.fileName}`}
                 alt={item.fileName}
                 className="media-image"

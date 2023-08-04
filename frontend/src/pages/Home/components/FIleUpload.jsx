@@ -26,6 +26,10 @@ const FIleUpload = (props) => {
             headers: {
               "Content-Type": "multipart/form-data",
             },
+            // .post("http://localhost:8000/media/upload", formData, {
+            //   headers: {
+            //     "Content-Type": "multipart/form-data",
+            //   },
           })
           .then((res) => {
             console.log("Upload successful: ", res);
