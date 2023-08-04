@@ -38,3 +38,7 @@
   padding: 1rem 1rem;
   width: 25rem;
 }
+.media-image {
+  max-width: 40%;
+  max-height: 40%;
+}

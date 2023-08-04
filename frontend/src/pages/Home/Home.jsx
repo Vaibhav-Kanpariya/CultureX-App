@@ -1,16 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/Home.css";
 import FIleUpload from "./components/FIleUpload";
-const Home = () => {
+import axios from "axios";
+import { useEffect } from "react";
+import VideoPlayer from "./components/VideoPlayer";
+const Home = (props) => {
+  const [data, setData] = useState([]);
+  const LogOut = () => {
+    window.open("http://localhost:8000/auth/logout", "_self");
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/media/files/${props.user.email}`
+      );
+      setData(response.data);
+    } catch (err) {
+      console.error("Error occured: ", err);
+    }
+  };
+  const renderFiles = () => {
+    return data.map((item) => {
+      if (item.type.startsWith("image")) {
+        return (
+          <div key={item._id}>
+            <div>
+              <img
+                src={`http://localhost:8000/media/${item.fileName}`}
+                alt={item.fileName}
+                className="media-image"
+              />
+            </div>
+          </div>
+        );
+      } else if (item.type.startsWith("video")) {
+        return (
+          <div key={item._id}>
+            <VideoPlayer videoName={item.fileName} />
+          </div>
+        );
+      }
+    });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className="wrapper">
       <div className="usr-detail">
-        <p>Username</p>
-        <button>Log Out</button>
+        <p>{props.user.displayName}</p>
+        <button onClick={LogOut}>Log Out</button>
       </div>
-      <FIleUpload />
+      <FIleUpload user={props.user} fetchData={fetchData} />
       <h2>Uploaded Files</h2>
-      <div className="media-container">3</div>
+      <div className="media-container">{renderFiles()}</div>
     </div>
   );
 };
