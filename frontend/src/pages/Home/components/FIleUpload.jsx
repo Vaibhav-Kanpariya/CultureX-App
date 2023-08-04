@@ -22,7 +22,7 @@ const FIleUpload = (props) => {
         formData.append("file", file);
         formData.append("user", user.email);
         axios
-          .post("http://localhost:8000/media/upload", formData, {
+          .post("https://my-snap.onrender.com/media/upload", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
