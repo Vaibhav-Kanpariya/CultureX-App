@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieSession = require("cookie-session");
+const session = require("express-session");
 const passport = require("passport");
 const passportStrategy = require("./auth/passport");
 const errorHandler = require("./middleware/errorHandler");
@@ -10,13 +11,33 @@ const cors = require("cors");
 const ConnectToDb = require("./db");
 ConnectToDb();
 
+// app.use(
+//   cookieSession({
+//     name: "session",
+//     keys: ["key1", "key2"],
+//     maxAge: 24 * 60 * 60 * 100,
+//   })
+// );
+app.set("trust proxy", 1); // trust first proxy
 app.use(
-  cookieSession({
-    name: "session",
-    keys: ["key1", "key2"],
-    maxAge: 24 * 60 * 60 * 100,
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
   })
 );
+var sess = {
+  secret: "keyboard cat",
+  cookie: {},
+};
+
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
+
+app.use(session(sess));
 
 app.use(passport.initialize());
 app.use(passport.session());
