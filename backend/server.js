@@ -11,40 +11,20 @@ const cors = require("cors");
 const ConnectToDb = require("./db");
 ConnectToDb();
 
-// app.use(
-//   cookieSession({
-//     name: "session",
-//     keys: ["key1", "key2"],
-//     maxAge: 24 * 60 * 60 * 100,
-//   })
-// );
-app.set("trust proxy", 1); // trust first proxy
 app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+    maxAge: 24 * 60 * 60 * 100,
   })
 );
-var sess = {
-  secret: "keyboard cat",
-  cookie: {},
-};
-
-if (app.get("env") === "production") {
-  app.set("trust proxy", 1); // trust first proxy
-  sess.cookie.secure = true; // serve secure cookies
-}
-
-app.use(session(sess));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
   cors({
-    origin: "https://my-snap.netlify.app",
+    origin: "https://my-snap.netlify.app", //localhost:5173
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
