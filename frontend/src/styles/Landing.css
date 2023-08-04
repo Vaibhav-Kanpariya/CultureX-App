@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+.login-btn {
+  all: unset;
+  background-color: orange;
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  height: 3.5rem;
+  width: 16rem;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+.login-btn:hover {
+  transform: scale(1.1);
+}

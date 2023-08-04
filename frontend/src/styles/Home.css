@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: column;
+}
+.usr-detail {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.usr-detail p {
+  font-size: large;
+  font-weight: 500;
+}
+.usr-detail button {
+  background-color: orange;
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+.upload-files {
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 1rem 1rem;
+}
+.upload-files button {
+  background-color: orange;
+  color: black;
+}
+.media-container {
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 1rem 1rem;
+  width: 25rem;
+}
